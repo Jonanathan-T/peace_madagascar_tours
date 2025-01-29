@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/routes/app_router.dart';
-
 @RoutePage()
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -21,7 +19,7 @@ class _SplashPageState extends State<SplashPage> {
   _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 4));
     if (mounted) {
-      context.router.replace(const HomeRoute());
+      context.router.replaceNamed('/home');
     }
   }
 
@@ -34,12 +32,15 @@ class _SplashPageState extends State<SplashPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Spacer(),
-            Image.asset(
-              'assets/logos/logo.png',
-              fit: BoxFit.scaleDown,
+            const Spacer(flex: 2),
+            Flexible(
+              flex: 3,
+              child: Image.asset(
+                'assets/logos/logo.png',
+                fit: BoxFit.scaleDown,
+              ),
             ),
-            const Spacer(),
+            const Spacer(flex: 1),
             const Text(
               "Developed By - Smile Technologie",
               style: TextStyle(color: Colors.black38),

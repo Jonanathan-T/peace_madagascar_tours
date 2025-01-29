@@ -7,19 +7,22 @@ import '../../features/splash/presentation/pages/splash_page.dart';
 part 'app_router.gr.dart';
 
 @AutoRouterConfig(
-  replaceInRouteName: 'Page,Route',
+  replaceInRouteName: 'Page|Widget,Route',
 )
-class AppRouter extends _$AppRouter {
+class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => <AutoRoute>[
         AutoRoute(
+          path: '/splash',
           page: SplashRoute.page,
           initial: true,
         ),
         AutoRoute(
+          path: '/home',
           page: HomeRoute.page,
         ),
         AutoRoute(
+          path: '/contact',
           page: ContactRoute.page,
         ),
       ];
