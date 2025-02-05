@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 import 'core/injection/injection.dart';
 import 'core/routes/app_router.dart';
 
 void main() {
   configureDependencies();
+  usePathUrlStrategy();
   runApp(App());
 }
 

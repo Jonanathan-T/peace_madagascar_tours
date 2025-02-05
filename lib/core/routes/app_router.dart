@@ -12,6 +12,7 @@ part 'app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => <AutoRoute>[
+        RedirectRoute(path: '/', redirectTo: '/splash'),
         AutoRoute(
           path: '/splash',
           page: SplashRoute.page,
@@ -26,4 +27,6 @@ class AppRouter extends RootStackRouter {
           page: ContactRoute.page,
         ),
       ];
+  @override
+  RouteType get defaultRouteType => const RouteType.adaptive();
 }
