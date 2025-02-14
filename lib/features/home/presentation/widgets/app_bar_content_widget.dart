@@ -8,20 +8,26 @@ class AppBarContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        ImageWithSize(imagePath: 'assets/logos/logo.png', size: 80),
-        Spacer(),
-        NavButton(label: "ACCUEIL"),
-        NavButton(label: "A PROPOS"),
-        NavButton(label: "CIRCUITS"),
-        NavButton(label: "INFOS"),
-        NavButton(label: "GALERIE"),
-        Spacer(),
-        ContactButton(),
-      ],
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ImageWithSize(imagePath: 'assets/logos/logo.png', size: 80),
+          Spacer(),
+          if (constraints.maxWidth > 790) ...[
+            NavButton(label: "ACCUEIL"),
+            NavButton(label: "A PROPOS"),
+            NavButton(label: "CIRCUITS"),
+            NavButton(label: "INFOS"),
+            NavButton(label: "GALERIE"),
+            Spacer(),
+            ContactButton(),
+          ] else ...[
+            Icon(Icons.menu),
+          ]
+        ],
+      );
+    });
   }
 }
 
