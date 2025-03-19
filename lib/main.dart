@@ -1,15 +1,19 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
+import 'core/config/google_maps_config.dart';
 import 'core/routes/app_router.dart';
 import 'core/themes/app_styles.dart';
 
-void main() {
+Future<void> main() async {
   if (kIsWeb) {
     usePathUrlStrategy();
+    await dotenv.load(fileName: ".env");
+    configureGoogleMaps();
     // debugDefaultTargetPlatformOverride = TargetPlatform.web;
   }
   runApp(App());

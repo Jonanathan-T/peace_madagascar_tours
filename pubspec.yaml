@@ -30,6 +30,8 @@ dependencies:
   google_maps_flutter_web: ^0.5.11
   form_field_validator: ^1.1.0
   shimmer_loading_placeholder: ^1.0.0
+  flutter_dotenv: ^5.2.1
+  universal_html: ^2.2.4
 
 dev_dependencies:
   flutter_test:
@@ -48,3 +50,4 @@ flutter:
     - assets/profile.jpg
     - assets/images/
     - assets/logos/
+    - .env
