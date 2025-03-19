@@ -41,8 +41,13 @@
     window.open = (url) => {
       window.location.href = url;
     };
-  </script>
 
+    function initMap() {
+      // Fonction de callback (nécessaire pour le chargement async)
+    }
+  </script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDdiy9dxa28-PhmAu3n089mfkwjpYHR1Ww&callback=initMap"></script>
 </body>
 
 </html>

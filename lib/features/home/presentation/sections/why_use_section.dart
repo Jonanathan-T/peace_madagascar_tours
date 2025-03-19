@@ -154,7 +154,7 @@ class WhyUsSection extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Tiana Gabriel Randrianarivony",
+                                "Vanila Chant Joëlle",
                                 style: TextStyle(
                                   color: Color(0xFF113175),
                                   fontWeight: FontWeight.bold,
@@ -162,7 +162,7 @@ class WhyUsSection extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Co-fondateur de Peace Madagascar Tours",
+                                "Co-fondatrice de Peace Madagascar Tours",
                                 style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 14.0,
@@ -192,8 +192,7 @@ class WhyUsSection extends StatelessWidget {
                             color: AppStyles.primaryColor,
                           ),
                         ),
-                        icon: const Icon(Icons.arrow_right_alt,
-                            color: AppStyles.primaryColor),
+                        icon: const Icon(Icons.arrow_right_alt, color: AppStyles.primaryColor),
                         iconAlignment: IconAlignment.end,
                         label: const Text(
                           "Voir plus",

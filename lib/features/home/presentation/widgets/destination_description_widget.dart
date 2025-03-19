@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/themes/app_styles.dart';
-import 'app_bar_content_widget.dart';
+import '../../../../core/core.dart';
 
 class DestinationDescriptionWidget extends StatelessWidget {
   const DestinationDescriptionWidget({super.key});
@@ -55,8 +54,7 @@ class DestinationDescriptionWidget extends StatelessWidget {
                 SizedBox(height: 25.0),
                 OutlinedButton.icon(
                   onPressed: launchEmail,
-                  icon: const Icon(Icons.arrow_right_alt,
-                      color: AppStyles.primaryColor),
+                  icon: const Icon(Icons.arrow_right_alt, color: AppStyles.primaryColor),
                   iconAlignment: IconAlignment.end,
                   style: OutlinedButton.styleFrom(
                     side: BorderSide(

@@ -19,14 +19,12 @@ class AdventureSection extends StatelessWidget {
     Adventure(
       image: "assets/images/IMG-20241113-WA0015.jpg",
       title: "Service Personnalisé",
-      description:
-          "Notre équipe dévouée est à vos côtés pour anticiper vos envies et transformer chaque instant en une expérience exceptionnelle, rien qu'à vous.",
+      description: "Notre équipe dévouée est à vos côtés pour anticiper vos envies et transformer chaque instant en une expérience exceptionnelle, rien qu'à vous.",
     ),
     Adventure(
       image: "assets/images/IMG-20241113-WA0016.jpg",
       title: "Respect de l’Environnement",
-      description:
-          "Nous croyons en un tourisme responsable, où chaque voyage contribue à préserver la beauté de la nature et à soutenir les communautés locales.",
+      description: "Nous croyons en un tourisme responsable, où chaque voyage contribue à préserver la beauté de la nature et à soutenir les communautés locales.",
     ),
   ];
 

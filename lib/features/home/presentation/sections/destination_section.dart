@@ -15,9 +15,7 @@ class DestinationSection extends StatelessWidget {
     return LayoutBuilder(builder: (context, constraints) {
       return Column(
         mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: constraints.maxWidth < 768
-            ? CrossAxisAlignment.stretch
-            : CrossAxisAlignment.center,
+        crossAxisAlignment: constraints.maxWidth < 768 ? CrossAxisAlignment.stretch : CrossAxisAlignment.center,
         children: [
           Row(
             spacing: 10.0,
@@ -37,9 +35,7 @@ class DestinationSection extends StatelessWidget {
             "Nos Destinations",
             style: AppStyles.headerTextStyle.copyWith(
               color: AppStyles.primaryColor,
-              fontSize: constraints.maxWidth < 600
-                  ? 24
-                  : 32, // Taille de police responsive
+              fontSize: constraints.maxWidth < 600 ? 24 : 32, // Taille de police responsive
             ),
             textAlign: TextAlign.center,
           ),
@@ -51,9 +47,7 @@ class DestinationSection extends StatelessWidget {
 
               textAlign: TextAlign.justify, // Centrer le texte
               style: TextStyle(
-                fontSize: constraints.maxWidth < 600
-                    ? 14
-                    : 16, // Taille de police responsive
+                fontSize: constraints.maxWidth < 600 ? 14 : 16, // Taille de police responsive
               ),
             ),
           ),
@@ -75,8 +69,7 @@ class DestinationSection extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15.0),
                       image: const DecorationImage(
-                        image:
-                            AssetImage("assets/images/IMG-20241113-WA0006.jpg"),
+                        image: AssetImage("assets/images/IMG-20241113-WA0006.jpg"),
                         fit: BoxFit.cover,
                       ),
                     ),

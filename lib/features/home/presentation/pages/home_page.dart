@@ -1,58 +1,73 @@
-// import 'package:auto_route/auto_route.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:peaces_madagascar_tours/features/shared/layouts/home_layout.dart';
 
-import '../../../../core/themes/app_styles.dart';
 import '../sections/destination_section.dart';
 import '../sections/discover_section.dart';
 import '../sections/feature_section.dart';
 import '../sections/hero_section.dart';
 import '../sections/why_use_section.dart';
-import '../widgets/app_bar_content_widget.dart';
 
-// @RoutePage()
+const List<String> images = [
+  'assets/images/IMG-20241113-WA0001.jpg',
+  'assets/images/IMG-20241113-WA0002.jpg',
+  'assets/images/IMG-20241113-WA0005.jpg',
+  'assets/images/IMG-20241113-WA0007.jpg',
+  'assets/images/IMG-20241113-WA0011.jpg',
+  'assets/images/IMG-20241113-WA0014.jpg',
+  'assets/images/IMG-20241113-WA0015.jpg',
+  'assets/images/IMG-20241113-WA0019.jpg',
+  'assets/images/IMG-20241113-WA0021.jpg',
+  'assets/images/IMG-20241113-WA0022.jpg',
+];
+
+@RoutePage()
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
-
-  static const List<String> images = [
-    'assets/images/IMG-20241113-WA0001.jpg',
-    'assets/images/IMG-20241113-WA0002.jpg',
-    'assets/images/IMG-20241113-WA0005.jpg',
-    'assets/images/IMG-20241113-WA0007.jpg',
-    'assets/images/IMG-20241113-WA0011.jpg',
-    'assets/images/IMG-20241113-WA0014.jpg',
-    'assets/images/IMG-20241113-WA0015.jpg',
-    'assets/images/IMG-20241113-WA0019.jpg',
-    'assets/images/IMG-20241113-WA0021.jpg',
-    'assets/images/IMG-20241113-WA0022.jpg',
-  ];
 
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return Scaffold(
-      backgroundColor: AppStyles.white,
-      appBar: AppBar(
-        backgroundColor: AppStyles.white,
-        surfaceTintColor: AppStyles.white,
-        shadowColor: Colors.black45,
-        elevation: 2.0,
-        centerTitle: true,
-        title: const AppBarContent(),
-      ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(horizontal: 50.0).copyWith(
-          top: 10.0,
+    return HomeLayout(
+      sliver: SliverList(
+        delegate: SliverChildListDelegate(
+          [
+            LayoutBuilder(
+              builder: (context, constraints) {
+                double padding = constraints.maxWidth < 790 ? 20.0 : 50.0;
+
+                return ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  padding: const EdgeInsets.only(top: 10.0),
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: padding),
+                      child: HeroSection(size: size),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: padding),
+                      child: FeatureSection(),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: padding),
+                      child: WhyUsSection(size: size),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: padding),
+                      child: DiscoverSection(images: images, size: size),
+                    ),
+                    SizedBox(height: 40.0),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: padding),
+                      child: DestinationSection(size: size),
+                    ),
+                  ],
+                );
+              },
+            ),
+          ],
         ),
-        children: [
-          // const AppBarContent(),
-          HeroSection(size: size),
-          const FeatureSection(),
-          WhyUsSection(size: size),
-          DiscoverSection(images: images, size: size),
-          SizedBox(height: 40.0),
-          DestinationSection(size: size),
-          SizedBox(height: 40.0),
-        ],
       ),
     );
   }

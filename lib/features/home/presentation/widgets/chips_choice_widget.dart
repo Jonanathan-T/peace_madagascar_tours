@@ -10,14 +10,7 @@ class ChipsChoiceWidget extends StatefulWidget {
 }
 
 class _ChipsChoiceWidgetState extends State<ChipsChoiceWidget> {
-  final List<String> _options = [
-    'Andasibe',
-    'Canal de Pangalane',
-    'Ankanin\'ny Nofy',
-    'Manambato',
-    'Foulpointe',
-    'Sainte Marie'
-  ];
+  final List<String> _options = ['Andasibe', 'Canal de Pangalane', 'Ankanin\'ny Nofy', 'Manambato', 'Foulpointe', 'Sainte Marie'];
   final List<String> _selectedOptions = [];
 
   @override
@@ -31,8 +24,7 @@ class _ChipsChoiceWidgetState extends State<ChipsChoiceWidget> {
         return ChoiceChip(
           label: Text(option),
           selected: _selectedOptions.contains(option),
-          selectedColor: AppStyles.accentColor.withValues(alpha: 0.5),
-          iconTheme: IconThemeData(color: AppStyles.accentColor),
+          selectedColor: AppStyles.primaryColor.withValues(alpha: 0.5),
           onSelected: (bool selected) {
             setState(() {
               if (selected) {

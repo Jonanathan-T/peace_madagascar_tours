@@ -1,0 +1,2 @@
+C:/Users/Totozamany/Documents/Web Developpement/peace_madagascar_tours/android/app/.cxx/Debug/6u2d4871/arm64-v8a/CMakeFiles/edit_cache.dir
+C:/Users/Totozamany/Documents/Web Developpement/peace_madagascar_tours/android/app/.cxx/Debug/6u2d4871/arm64-v8a/CMakeFiles/rebuild_cache.dir

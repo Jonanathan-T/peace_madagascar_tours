@@ -106,6 +106,22 @@ class _BookingSectionState extends State<BookingSection> {
                           textAlign: TextAlign.center,
                         ),
                         content: ChipsChoiceWidget(),
+                        actions: [
+                          TextButton(
+                            onPressed: () => Navigator.pop(context),
+                            child: Text("Annuler"),
+                          ),
+                          FilledButton(
+                            onPressed: () => Navigator.pop(context),
+                            style: FilledButton.styleFrom(
+                              backgroundColor: AppStyles.accentColor,
+                              textStyle: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                            child: Text("Valider"),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -129,41 +145,38 @@ class _BookingSectionState extends State<BookingSection> {
               spacing: 20.0,
               children: [
                 Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () => _selectDate(context),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                        color: Colors.white,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    spacing: 10.0,
+                    children: [
+                      Text(
+                        "Date",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
                       ),
-                      iconColor: AppStyles.accentColor,
-                      foregroundColor: Colors.white,
-                    ),
-                    label: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "Date: ${dateFormater(selectedDate ?? DateTime.now())}",
+                      OutlinedButton.icon(
+                        onPressed: () => _selectDate(context),
+                        style: OutlinedButton.styleFrom(
+                          side: BorderSide(
+                            color: Colors.white,
+                          ),
+                          iconColor: AppStyles.accentColor,
+                          foregroundColor: Colors.white,
+                        ),
+                        label: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            dateFormater(selectedDate ?? DateTime.now()),
+                          ),
+                        ),
+                        icon: Icon(Icons.calendar_month),
                       ),
-                    ),
-                    icon: Icon(Icons.calendar_month),
+                    ],
                   ),
                 ),
-                Expanded(
-                  child: OutlinedButton.icon(
-                    onPressed: () {},
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                        color: Colors.white,
-                      ),
-                      iconColor: AppStyles.accentColor,
-                      foregroundColor: Colors.white,
-                    ),
-                    label: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text("Passager"),
-                    ),
-                    icon: Icon(Icons.people),
-                  ),
-                ),
+                PassengerWidget(),
               ],
             ),
             FilledButton(
