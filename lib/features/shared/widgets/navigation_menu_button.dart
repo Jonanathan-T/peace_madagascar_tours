@@ -32,7 +32,7 @@ class NavigationMenuButton extends StatelessWidget {
             ),
             Spacer(),
             // Menu items for Mobile
-            if (constraints.maxWidth <= 790) ...[
+            if (constraints.maxWidth <= 910) ...[
               PopupMenuButton<int>(
                 position: PopupMenuPosition.under,
                 offset: offset,

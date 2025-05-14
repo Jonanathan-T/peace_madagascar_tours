@@ -31,7 +31,7 @@ class FeatureSection extends StatelessWidget {
       child: Wrap(
         spacing: 8,
         runSpacing: 8,
-        alignment: WrapAlignment.spaceBetween,
+        alignment: WrapAlignment.center,
         children: List<Widget>.generate(list.length, (index) {
           return FeatureCard(
             icon: list[index].icon,
@@ -70,17 +70,25 @@ class FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
+      double parentWidth = constraints.maxWidth.isFinite ? constraints.maxWidth : MediaQuery.of(context).size.width;
       // Taille maximum disponible
-      double maxWidth = constraints.maxWidth * .32;
+      double maxWidth = parentWidth * .32;
       double maxHeight = constraints.maxHeight;
 
       // Dimensions minimales souhaitées
-      double minWidth = 150;
-      double minHeight = 100;
+      double minWidth = 360;
+      double minHeight = 210;
 
       // Calcul de la largeur et de la hauteur tout en respectant le ratio
       double width = maxWidth >= minWidth ? maxWidth : minWidth;
       double height = width / (16 / 9); // Exemple : Ratio 16:9
+
+      int maxLines;
+      if (constraints.maxWidth > 1380) {
+        maxLines = 6;
+      } else {
+        maxLines = 4;
+      }
 
       // Assurer que la hauteur reste dans les limites
       if (height > maxHeight) {
@@ -106,8 +114,8 @@ class FeatureCard extends StatelessWidget {
             const SizedBox(height: 16),
             Text(
               title,
-              style: const TextStyle(
-                fontSize: 20,
+              style:  TextStyle(
+                fontSize: constraints.maxWidth <420 ? 18 : 20,
                 fontWeight: FontWeight.bold,
                 color: AppStyles.primaryColor,
               ),
@@ -115,9 +123,9 @@ class FeatureCard extends StatelessWidget {
             const SizedBox(height: 8),
             Text(
               description,
-              style: TextStyle(color: Colors.grey[600]),
+              style: TextStyle(color: Colors.grey[600],fontSize:  constraints.maxWidth <420 ? 12 : null),
               overflow: TextOverflow.ellipsis,
-              maxLines: 6,
+              maxLines: maxLines,
             ),
           ],
         ),

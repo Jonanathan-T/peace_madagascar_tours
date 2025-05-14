@@ -22,7 +22,6 @@ class MapsPageState extends State<MapsPage> {
   // static const CameraPosition _kLake = CameraPosition(bearing: 192.8334901395799, target: LatLng(37.43296265331129, -122.08832357078792), tilt: 59.440717697143555, zoom: 19.151926040649414);
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     // Attendre que l'API soit chargée
     WidgetsBinding.instance.addPostFrameCallback((_) {

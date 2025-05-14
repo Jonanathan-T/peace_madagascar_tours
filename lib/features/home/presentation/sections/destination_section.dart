@@ -61,49 +61,51 @@ class DestinationSection extends StatelessWidget {
             width: size.width * 0.8,
             height: size.height * 0.75,
             padding: const EdgeInsets.all(10.0),
-            child: Row(
-              children: [
-                Flexible(
-                  flex: 1,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15.0),
-                      image: const DecorationImage(
-                        image: AssetImage("assets/images/IMG-20241113-WA0006.jpg"),
-                        fit: BoxFit.cover,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(width: 25.0),
-                Flexible(
-                  flex: 2,
-                  child: Column(
+            child: (constraints.maxWidth >= 768)
+                ? Row(
                     children: [
                       Flexible(
-                        flex: 2,
+                        flex: 1,
                         child: Container(
                           decoration: BoxDecoration(
-                            color: Colors.white,
                             borderRadius: BorderRadius.circular(15.0),
+                            image: const DecorationImage(
+                              image: AssetImage("assets/images/IMG-20241113-WA0006.jpg"),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          child: const DestinationDescriptionWidget(),
                         ),
                       ),
-                      const SizedBox(height: 20.0),
+                      const SizedBox(width: 25.0),
                       Flexible(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.amber,
-                            borderRadius: BorderRadius.circular(15.0),
-                          ),
+                        flex: 2,
+                        child: Column(
+                          children: [
+                            Flexible(
+                              flex: 2,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                child: const DestinationDescriptionWidget(),
+                              ),
+                            ),
+                            const SizedBox(height: 20.0),
+                            Flexible(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.amber,
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
-                  ),
-                ),
-              ],
-            ),
+                  )
+                : Fiacrah(),
           ),
           SizedBox(height: 40.0),
           AdventureSection(size: size),

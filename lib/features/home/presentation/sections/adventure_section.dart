@@ -31,9 +31,10 @@ class AdventureSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * .85,
+      height: size.height * .9,
       width: size.width * 0.8,
       padding: const EdgeInsets.all(10.0),
+      margin: const EdgeInsets.only(bottom: 25.0),
       child: Column(
         spacing: 10.0,
         crossAxisAlignment: CrossAxisAlignment.stretch,
