@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:peaces_madagascar_tours/core/themes/app_styles.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 
 @RoutePage()
 class SplashPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _SplashPageState extends State<SplashPage> {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.sizeOf(context).height;
+    final height = context.screenHeight;
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 
 import '../../../../core/core.dart';
 
@@ -38,7 +39,7 @@ class AboutCardWidget extends StatelessWidget {
         }
         return Container(
           width: width,
-          // height: MediaQuery.sizeOf(context).height * .7,
+          // height: context.screenHeight * .7,
           constraints: BoxConstraints(minHeight: minHeight, minWidth: minWidth),
           padding: const EdgeInsets.all(16),
           // decoration: BoxDecoration(
@@ -75,7 +76,7 @@ class AboutCardWidget extends StatelessWidget {
               const SizedBox(height: 20.0),
               if (images != null && images!.isNotEmpty) ...[
                 Container(
-                  height: MediaQuery.sizeOf(context).height * .5,
+                  height: context.screenHeight * .5,
                   margin: const EdgeInsets.only(top: 16.0, bottom: 50.0),
                   // color: Colors.amber,
                   child: Row(

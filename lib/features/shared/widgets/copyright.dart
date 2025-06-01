@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 
 class Copyright extends StatelessWidget {
   const Copyright({
@@ -10,7 +11,8 @@ class Copyright extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(top: 40.0),
       padding: EdgeInsets.symmetric(
-        vertical: MediaQuery.sizeOf(context).height * .02,
+        vertical: context.screenHeight * .02,
+        horizontal: context.screenWidth * .05,
       ),
       decoration: BoxDecoration(
         border: Border(
@@ -24,6 +26,7 @@ class Copyright extends StatelessWidget {
                 color: Colors.black54,
                 fontSize: 12.0,
               ),
+          textAlign: TextAlign.center,
         ),
       ),
     );

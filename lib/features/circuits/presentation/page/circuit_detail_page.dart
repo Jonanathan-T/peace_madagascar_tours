@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 import '../../../../core/themes/app_styles.dart';
 import '../../domaine/entities/circuit.dart';
 
@@ -14,7 +15,7 @@ class CircuitDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        double padding = constraints.maxWidth < 790 ? 20.0 : MediaQuery.sizeOf(context).width * .05;
+        double padding = constraints.maxWidth < 790 ? 20.0 : context.screenWidth * .05;
 
         return HomeLayout(
           sliver: SliverList(

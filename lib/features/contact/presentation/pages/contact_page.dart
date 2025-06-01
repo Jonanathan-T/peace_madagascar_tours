@@ -3,6 +3,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import '../../../../core/core.dart';
@@ -37,7 +38,7 @@ class ContactPage extends StatelessWidget {
             ),
             SliverToBoxAdapter(
               child: Container(
-                height: MediaQuery.sizeOf(context).height * .7,
+                height: context.screenHeight * .7,
                 margin: EdgeInsets.only(
                   bottom: 15.0,
                 ),
@@ -54,7 +55,7 @@ class ContactPage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.sizeOf(context).width * .02,
+                  horizontal: context.screenWidth * .02,
                 ).copyWith(top: 20.0, bottom: 50.0),
                 child: Column(
                   spacing: 8.0,
@@ -85,14 +86,14 @@ class ContactPage extends StatelessWidget {
             SliverToBoxAdapter(
               child: Padding(
                 padding: EdgeInsets.symmetric(
-                  horizontal: MediaQuery.sizeOf(context).width * .02,
+                  horizontal: context.screenWidth * .02,
                 ),
                 child: Column(
                   spacing: 25.0,
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Container(
-                      margin: EdgeInsets.symmetric(vertical: MediaQuery.sizeOf(context).width * .02),
+                      margin: EdgeInsets.symmetric(vertical: context.screenWidth * .02),
                       child: Flex(
                         direction: (constraintes.maxWidth <= 1150) ? Axis.vertical : Axis.horizontal,
                         mainAxisSize: MainAxisSize.min,
@@ -233,7 +234,7 @@ class ContactPage extends StatelessWidget {
                       ),
                     ),
                     SizedBox(
-                      height: MediaQuery.sizeOf(context).height * .5,
+                      height: context.screenHeight * .5,
                       child: MapsPage(),
                     ),
                   ],

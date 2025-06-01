@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/themes/app_styles.dart';
@@ -31,7 +32,7 @@ class AdventureSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: size.height * .9,
+      // height: context.screenWidth >= 768 ? size.height * .9 : null,
       width: size.width * 0.8,
       padding: const EdgeInsets.all(10.0),
       margin: const EdgeInsets.only(bottom: 25.0),
@@ -62,18 +63,33 @@ class AdventureSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 25.0),
-          Expanded(
-            child: Wrap(
-              alignment: WrapAlignment.spaceBetween,
-              children: List<Widget>.generate(
-                adventures.length,
-                (index) {
-                  final adventure = adventures[index];
-                  return AdventureWidget(size: size, adventure: adventure);
-                },
-              ),
+          //if (context.screenWidth >= 768)
+          Wrap(
+            alignment: WrapAlignment.center,
+            spacing: 10.0,
+            runSpacing: 10.0,
+            children: List<Widget>.generate(
+              adventures.length,
+              (index) {
+                final adventure = adventures[index];
+                return AdventureWidget(size: size, adventure: adventure);
+              },
             ),
-          ),
+          )
+          // else
+          //   ...List<Widget>.generate(
+          //     adventures.length,
+          //     (index) {
+          //       final adventure = adventures[index];
+          //       return Column(
+          //         crossAxisAlignment: CrossAxisAlignment.stretch,
+          //         children: [
+          //           AdventureWidget(size: size, adventure: adventure),
+          //           SizedBox(height: 10.0),
+          //         ],
+          //       );
+          //     },
+          //   )
         ],
       ),
     );
@@ -93,7 +109,7 @@ class AdventureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: size.width * .25,
+      width: 384.0,
       height: 450.0,
       child: Stack(
         alignment: AlignmentDirectional.bottomEnd,
@@ -151,9 +167,10 @@ class AdventureWidget extends StatelessWidget {
                     ),
                   ),
                   Flexible(
-                    child: Text(
+                    child: AutoSizeText(
                       adventure.description,
                       overflow: TextOverflow.clip,
+                      maxLines: 4,
                     ),
                   ),
                 ],

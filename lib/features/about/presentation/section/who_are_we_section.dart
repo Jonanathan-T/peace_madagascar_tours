@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 
 import '../../../../core/core.dart';
 import '../../../shared/shared.dart';
@@ -42,7 +43,7 @@ class WhoAreWeSection extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  height: constraints.maxWidth >= 900 ? MediaQuery.sizeOf(context).height * .5 : null,
+                  height: constraints.maxWidth >= 900 ? context.screenHeight * .5 : null,
                   constraints: BoxConstraints(minHeight: 350.0),
                   padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Flex(
@@ -143,7 +144,7 @@ class WhoAreWeSection extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width:685.0 ,
+                  width: 685.0,
                   margin: EdgeInsets.only(
                     top: 75.0,
                     left: constraints.maxWidth >= 900 ? 0 : 25.0,
