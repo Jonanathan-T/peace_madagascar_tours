@@ -1,9 +1,11 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 import 'package:peaces_madagascar_tours/core/utils/extensions/date_time_extension.dart';
 
 import '../../../../core/themes/app_styles.dart';
+import '../../controller/boking_controller.dart';
 import '../widgets/widgets.dart';
 
 class BookingSection extends StatefulWidget {
@@ -16,8 +18,7 @@ class BookingSection extends StatefulWidget {
 }
 
 class _BookingSectionState extends State<BookingSection> {
-  DateTime? selectedDate;
-
+  final BookingController _bookingController = Get.put(BookingController());
   Future<void> _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
@@ -25,7 +26,9 @@ class _BookingSectionState extends State<BookingSection> {
       firstDate: DateTime.now(),
       lastDate: DateTime(2077),
     );
-    if (picked != null) setState(() => selectedDate = picked);
+    if (picked != null) {
+      _bookingController.selectedDate.value = picked;
+    }
   }
 
   @override
@@ -158,41 +161,6 @@ class _BookingSectionState extends State<BookingSection> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     spacing: 10.0,
                     children: [
-                      /*  Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        spacing: 10.0,
-                        children: [
-                          const Text(
-                            "Date",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          OutlinedButton.icon(
-                            onPressed: () => _selectDate(context),
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                color: Colors.white,
-                              ),
-                              iconColor: AppStyles.accentColor,
-                              foregroundColor: Colors.white,
-                            ),
-                            label: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: AutoSizeText(
-                                (selectedDate ?? DateTime.now()).formattedDDMMYYYY,
-                                minFontSize: 9.0,
-                                style: const TextStyle(
-                                  fontSize: 9.0,
-                                ),
-                              ),
-                            ),
-                            icon: const Icon(Icons.calendar_month),
-                          ),
-                        ],
-                      ),
-                       */
                       BookingButtonWidget(
                           title: "Date",
                           child: InkWell(
@@ -205,15 +173,15 @@ class _BookingSectionState extends State<BookingSection> {
                                 Center(
                                     child: Icon(
                                   Icons.calendar_month,
-                                  color: Colors.white,
+                                  color: AppStyles.accentColor,
                                 )),
                                 Center(
-                                  child: AutoSizeText(
-                                    (selectedDate ?? DateTime.now()).formattedDDMMYYYY,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  ),
+                                  child: Obx(() => AutoSizeText(
+                                        _bookingController.selectedDate.value.formattedDDMMYYYY,
+                                        style: const TextStyle(
+                                          color: Colors.white,
+                                        ),
+                                      )),
                                 ),
                               ],
                             ),
@@ -225,59 +193,30 @@ class _BookingSectionState extends State<BookingSection> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     spacing: 10.0,
                     children: [
-                      /*  Expanded(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        spacing: 10.0,
-                        children: [
-                          const Text(
-                            "Date",
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
-                          ),
-                          OutlinedButton.icon(
-                            onPressed: () => _selectDate(context),
-                            style: OutlinedButton.styleFrom(
-                              side: const BorderSide(
-                                color: Colors.white,
-                              ),
-                              iconColor: AppStyles.accentColor,
-                              foregroundColor: Colors.white,
-                            ),
-                            label: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: AutoSizeText(
-                                (selectedDate ?? DateTime.now()).formattedDDMMYYYY,
-                              ),
-                            ),
-                            icon: const Icon(Icons.calendar_month),
-                          ),
-                        ],
-                      ),
-                    ), */
-                      BookingButtonWidget(
-                          title: "Date",
-                          child: InkWell(
-                            onTap: () => _selectDate(context),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.stretch,
-                              children: [
-                                Center(child: Icon(Icons.calendar_month, color: Colors.white)),
-                                Center(
-                                  child: AutoSizeText(
-                                    (selectedDate ?? DateTime.now()).formattedDDMMYYYY,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                    ),
+                      Expanded(
+                        child: BookingButtonWidget(
+                            title: "Date",
+                            child: InkWell(
+                              onTap: () => _selectDate(context),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                spacing: 10.0,
+                                children: [
+                                  Center(child: Icon(Icons.calendar_month, color: AppStyles.accentColor)),
+                                  Center(
+                                    child: Obx(() => AutoSizeText(
+                                          _bookingController.selectedDate.value.formattedDDMMYYYY,
+                                          style: const TextStyle(
+                                            color: Colors.white,
+                                          ),
+                                        )),
                                   ),
-                                ),
-                              ],
-                            ),
-                          )),
-                      const BookingButtonWidget(title: "Passager", child: PassengerCountWidget()),
+                                ],
+                              ),
+                            )),
+                      ),
+                      Expanded(child: const BookingButtonWidget(title: "Passager", child: PassengerCountWidget())),
                     ],
                   ),
             const SizedBox(height: 10.0),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/themes/app_styles.dart';
+import '../../controller/boking_controller.dart';
 
 class BookingButtonWidget extends StatelessWidget {
   final String title;
@@ -28,7 +30,7 @@ class BookingButtonWidget extends StatelessWidget {
             ),
             borderRadius: BorderRadius.circular(25.0),
           ),
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
           child: Center(child: child),
         ),
       ],
@@ -36,44 +38,35 @@ class BookingButtonWidget extends StatelessWidget {
   }
 }
 
-class PassengerCountWidget extends StatefulWidget {
+class PassengerCountWidget extends StatelessWidget {
   const PassengerCountWidget({super.key});
-
-  @override
-  State<PassengerCountWidget> createState() => _PassengerCountWidgetState();
-}
-
-class _PassengerCountWidgetState extends State<PassengerCountWidget> {
-  int _passengerCount = 2;
-
   @override
   Widget build(BuildContext context) {
+    final BookingController bookingController = Get.find();
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: CrossAxisAlignment.center,
       spacing: 10.0,
       children: [
         InkWell(
           onTap: () {
-            setState(() {
-              if (_passengerCount > 1) _passengerCount--;
-            });
+            if (bookingController.passengerCount > 1) {
+              bookingController.passengerCount--;
+            }
           },
           child: Icon(
             Icons.remove,
             color: AppStyles.accentColor,
           ),
         ),
-        Text(
-          "$_passengerCount",
-          style: TextStyle(color: Colors.white),
-          textAlign: TextAlign.center,
-        ),
+        Obx(() => Text(
+              bookingController.passengerCount.toString(),
+              style: TextStyle(color: Colors.white),
+              textAlign: TextAlign.center,
+            )),
         InkWell(
           onTap: () {
-            setState(() {
-              _passengerCount++;
-            });
+            bookingController.passengerCount++;
           },
           child: Icon(
             Icons.add,
