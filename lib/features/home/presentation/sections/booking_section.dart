@@ -1,12 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:peaces_madagascar_tours/core/utils/extensions/context_extensions.dart';
 import 'package:peaces_madagascar_tours/core/utils/extensions/date_time_extension.dart';
 
-import '../../../../core/themes/app_styles.dart';
-import '../../controller/boking_controller.dart';
-import '../widgets/widgets.dart';
+import 'package:peaces_madagascar_tours/core/themes/app_styles.dart';
+import 'package:peaces_madagascar_tours/features/home/controller/boking_controller.dart';
+import 'package:peaces_madagascar_tours/features/home/presentation/widgets/widgets.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class BookingSection extends StatefulWidget {
   final Size size;
@@ -122,12 +124,20 @@ class _BookingSectionState extends State<BookingSection> {
                           ),
                           content: const ChipsChoiceWidget(),
                           actions: [
-                            TextButton(
-                              onPressed: () => Navigator.pop(context),
-                              child: const Text("Annuler"),
+                            Obx(
+                              () => TextButton(
+                                onPressed: () {
+                                  if (_bookingController.selectedOption.isNotEmpty) {
+                                    _bookingController.clearOptions();
+                                  } else {
+                                    context.router.pop();
+                                  }
+                                },
+                                child: Text(_bookingController.selectedOption.isNotEmpty ? "Réinitialiser" : "Annuler"),
+                              ),
                             ),
                             FilledButton(
-                              onPressed: () => Navigator.pop(context),
+                              onPressed: () => context.router.pop(),
                               style: FilledButton.styleFrom(
                                 backgroundColor: AppStyles.accentColor,
                                 textStyle: const TextStyle(
@@ -222,7 +232,27 @@ class _BookingSectionState extends State<BookingSection> {
             const SizedBox(height: 10.0),
             Flexible(
               child: FilledButton(
-                onPressed: () {},
+                onPressed: () async {
+                  try {
+                    final date = _bookingController.selectedDate.value.formattedDDMMYYYY;
+                    final selected = _bookingController.selectedOption.isNotEmpty ? _bookingController.selectedOption.join(', ') : 'Aucune sélection';
+                    final subject = "Réservation - Peace Madagascar Tours";
+                    final body = "Bonjour,\n\nJe souhaite réserver pour la date suivante : $date\nDestinations choisies : $selected\n\nMerci.";
+                    final uri = Uri(
+                      scheme: "mailto",
+                      path: "peacemadagascartours@gmail.com",
+                      queryParameters: {'subject': subject, 'body': body},
+                    );
+
+                    if (!await launchUrl(uri)) {
+                      Get.snackbar('Erreur', 'Impossible d\'ouvrir le client mail.');
+                    } else {
+                      Get.snackbar('Succès', 'Client mail ouvert.');
+                    }
+                  } catch (e) {
+                    Get.snackbar('Erreur', 'Une erreur est survenue lors de l\'envoi du mail.');
+                  }
+                },
                 style: FilledButton.styleFrom(
                   backgroundColor: AppStyles.accentColor,
                   textStyle: const TextStyle(fontSize: 16.0, letterSpacing: 1.1),

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
 
 class BookingController extends GetxController {
@@ -9,15 +8,13 @@ class BookingController extends GetxController {
 
   void addOption(String option) {
     selectedOption.add(option);
-    if (kDebugMode) {
-      print(selectedOption.toString());
-    }
   }
 
   void removeOption(String option) {
     selectedOption.remove(option);
-    if (kDebugMode) {
-      print(selectedOption.toString());
-    }
+  }
+
+  void clearOptions() {
+    selectedOption.clear();
   }
 }
